@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <label for="nama">nama</label>
+    <input type="text" id="nama" /><br />
+    <label for="nama">jumlah pinjaman</label>
+    <input type="text" id="jPinjam" /><br />
+    <label for="nama">tenor</label>
+    <input type="text" id="tenor" /><br />
+    <label for="nama">bunga</label>
+    <input type="text" id="bunga" /><br />
+    <label for="nama">angsuran/bulan</label>
+    <textarea id="angsuran"></textarea>
+    <button onclick="hitung()">hitung</button>
+<br>
+    <input type="text" id="rupiah">
+
+    <script>
+      let nama = document.getElementById("nama");
+      function hitung() {
+        let jPinjam = parseInt(document.getElementById("jPinjam").value);
+        let tenor = parseInt(document.getElementById("tenor").value);
+        let bunga = parseInt(document.getElementById("bunga").value);
+
+        let bungaPer = (bunga / 100) * jPinjam;
+        let modal = jPinjam / tenor ;
+        let total = bungaPer + modal;
+
+        document.getElementById("angsuran").innerHTML = total;
+      }
+
+
+      let rupiah = document.getElementById('rupiah');
+      rupiah.addEventListener('keyup', function(e){
+        rupiah.value = formatRupiah(this.value, 'Rp.  ';)
+      })
+
+      function formatRupiah(angka, prefix){
+        let number_string = angka.replace(/[^, \d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+      }
+      if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      return prefix == undefined ? rupiah : (rupiah ? 'Rp.  ' + rupiah : '');
+    </script>
+  </body>
+</html>

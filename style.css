@@ -1,0 +1,13 @@
+.row {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+.row button{
+    width: 100px;
+    margin: auto ;
+    margin-top: 10px;
+}
+#angsuran {
+    width: 82%;
+    margin-left: 10px;
+}
